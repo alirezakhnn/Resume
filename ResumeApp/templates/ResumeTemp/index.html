@@ -1,0 +1,89 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <title>Resume</title>
+</head>
+{% for i in resume %}
+<body class="bg-black grid place-items-center w-full">
+{% endfor %}
+    <div class="container grid text-white">
+        <div class="flex align-center ml-4 mt-4 gap-4">
+            <button type="button" id="day" class="py-3 px-6 rounded-full bg-white text-black z-10 justify-self-end grid place-items-center hover:bg-[#e4e4e4]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-brightness-low-fill" viewBox="0 0 16 16">
+                    <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
+                </svg>
+            </button>
+            <button type="button" id="night" class="text-white z-10 justify-self-end grid place-items-center bg-[#1D2938] focus:bg-white focus:text-black px-6 py-3 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
+                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                </svg>
+            </button>
+        </div>
+        {% if resume %}
+        {% for i in resume %}
+        <img  class="object-fill blur-sm absolute justify-self-center dark:hidden" src="{{i.pic.url}}" />
+        <div class="grid lg:grid-cols-2 sm:grid-cols-1 sm:gap-y-8 mb-6 lg:gap-x-8 place-items-center font-mona z-10 mt-5">
+            <div class="char-info grid grid-cols-1 gap-y-3 ml-0 md:ml-10 mx-4 md:mx-0 mt-2 p-4 rounded-md bg-none bg-gray-800 dark:bg-transparent">
+                <p class="text-blue-400"><span class="text-white"><img src="{{i.pic.url}}" class="rounded-md" width="500" height="200" alt="profile picture" /></p>
+                <p class="text-blue-400"><span class="text-white">firstName: </span>{{i.first_name}}</p>
+                <p class="text-blue-400"><span class="text-white">lastName: </span>{{i.last_name}}</p>
+                <p class="text-blue-400"><span class="text-white">email: </span>{{i.email}}</p>
+                <p class="text-blue-400 max-w-[500px]"><span class="text-white">history: </span>{{i.history}}</p>
+                <p class="text-blue-400"><span class="text-white">phone: </span>{{i.phone_number}}</p>
+                <a class="py-2 px-6 dark:bg-[#fff] bg-blue-700 dark:text-black text-white w-[25%] hover:bg-gray-500 text-center font-bold rounded-3xl mt-4 dark:hover:bg-[#eaeaea] transition-background duration-300 ease-in-out" href="{% url 'edit' i.id %}">edit</a>
+            </div>
+            <div class="font-mona z-10 dark:shadow-none dark:bg-transparent shadow-lg shadow-black bg-gray-800 px-6 py-2 rounded-full">
+                <h1 class="z-10 font-extrabold md:text-[70px] text-[50px] max-w-[500px] text-transparent dark:bg-gradient-to-r dark:from-[#fff] dark:to-[rgb(167,167,167)] bg-gradient-to-r from-[#fff] via-[#abaaaa] to-[#ffffff] bg-clip-text ml-10 dark:ml-0">Hello and Welcome to my Page. This is about my Resume.</h1>
+                <button type="button" id="explore" class="px-16 py-4 text-white rounded-full font-bold shadow-lg shadow-[#1D2938] animate-bounce bg-gradient-to-r from-gray-800 to-blue-800 hover:animate-none">explore</button>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <strong class="no-info font-mona text-3xl ml-5 mt-5 text-black dark:text-white">no resume is found</strong>
+        {% endif %}
+    </div>
+    <style>
+        .char {
+            width:80px;
+            border-radius:100%;
+            cursor:pointer;
+        }
+        .char-info  {
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script type="text/javascript">
+        let night = document.getElementById('night');
+        let day = document.getElementById('day');
+        night.addEventListener('click', () => {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+            localStorage.theme = 'dark';
+            day.style.background = '#1D2938';
+            day.style.color = 'white';
+            night.style.background = 'white';
+            night.style.color =  'black';
+        })
+        day.addEventListener('click', () => {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+            night.style.background = '#1D2938';
+            night.style.color = 'white';
+            localStorage.theme = 'light';
+            day.style.background = 'white';
+            day.style.color = 'black';
+        })
+        let explore = document.getElementById('explore');
+        explore.onclick = () => {
+            window.scroll(0, 200)
+        }
+    </script>
+</body>
+</html>

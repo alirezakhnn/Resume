@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Mona";
+    src: url('./fonts/MonaSans/Mona-Sans.ttf')  format('ttf');
+    src: url('./fonts/MonaSans/Mona-Sans.woff') format('woff');
+}

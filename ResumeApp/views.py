@@ -15,11 +15,13 @@ def add(req):
         form = ResumeInsForm(req.POST, req.FILES)
         if form.is_valid():
             new_picture_project = form.cleaned_data['picture_project']
+            new_link_project = form.cleaned_data['link_project']
             new_name_project = form.cleaned_data['name_project']
             new_summary_project = form.cleaned_data['summary_project']
             
             new_ResumeIns = ResumeIns(
                 picture_project = new_picture_project,
+                link_project = new_link_project,
                 name_project = new_name_project,
                 summary_project = new_summary_project
             )

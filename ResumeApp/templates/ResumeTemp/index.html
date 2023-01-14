@@ -11,7 +11,7 @@
 {% for i in resume %}
 <body class="bg-black grid place-items-center w-full">
 {% endfor %}
-    <div class="container grid text-white">
+    <div class="container grid">
         <div class="flex align-center ml-4 mt-4 gap-4">
             <button type="button" id="day" class="py-3 px-6 rounded-full bg-white text-black z-10 justify-self-end grid place-items-center hover:bg-[#e4e4e4]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-brightness-low-fill" viewBox="0 0 16 16">
@@ -55,6 +55,11 @@
                     <img class="rounded-lg" src="{{i.picture_project.url}}" width="400" height="300" alt="{{i.name_project}}" />
                     <h5 class="text-white text-3xl my-2">{{i.name_project}}</h5>
                     <span class="text-white max-w-[300px] my-4">{{i.summary_project}}</span>
+                    <a id="source" href="{{i.link_project}}" target="blank" title="project source" class="transition-all bg-gray-900 hover:bg-gray-700 hover:shadow-md hover:shadow-gray-900 rounded-lg py-2 px-6 font-mona">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
                     <div class="btn-resume-ins flex gap-6 align-center mt-4">
                         <a class=" transition-all px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-800" type="button" href="{% url 'editIns' i.id %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -77,7 +82,7 @@
             {% else %}
             <h2 class="text-white text-2xl text-center">no instance found</h2>
             {% endif %}
-            <a type="button" class=" font-extrabold px-8 py-3 bg-gray-800 hover:bg-blue-700 transition-all my-4 rounded-full" href="{% url 'add' %}">
+            <a class="font-extrabold px-8 py-3 bg-gray-800 hover:bg-blue-700 transition-all my-4 rounded-full" href="{% url 'add' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                 </svg>

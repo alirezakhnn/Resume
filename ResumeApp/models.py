@@ -14,6 +14,7 @@ class ResumeModel(models.Model):
 
 class ResumeIns(models.Model):
     picture_project = models.ImageField()
+    link_project = models.CharField(max_length=100)
     name_project = models.CharField(max_length=20)
     summary_project = models.CharField(max_length=300)
     
